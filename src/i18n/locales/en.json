@@ -1,0 +1,335 @@
+{
+  "app": {
+    "title": "Smart Krishi Sahayak",
+    "subtitle": "Your Agriculture Assistant"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "weather": "Weather",
+    "crops": "Crop Info",
+    "diseases": "Disease Detection",
+    "prices": "Mandi Prices",
+    "schemes": "Govt Schemes",
+    "agent": "AI Agent",
+    "profile": "Profile"
+  },
+  "dashboard": {
+    "welcome": "Welcome to Smart Krishi Sahayak",
+    "todayWeather": "Today's Weather",
+    "quickActions": "Quick Actions",
+    "recentAlerts": "Recent Alerts",
+    "marketPrices": "Market Prices",
+    "viewAllPrices": "View All Prices"
+  },
+  "weather": {
+    "title": "Weather Forecast",
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "rainfall": "Rainfall",
+    "windSpeed": "Wind Speed",
+    "forecast": "7-Day Forecast",
+    "location": "Location",
+    "fetching": "Getting weather data...",
+    "fetchError": "Unable to fetch weather data",
+    "locationError": "Location access denied. Please allow location access to get weather data.",
+    "noGeolocation": "Geolocation is not supported by this browser",
+    "visibility": "Visibility",
+    "feelsLike": "Feels Like",
+    "recommendations": "Crop Recommendations",
+    "recommendationText": "Based on current weather conditions:",
+    "rec1": "Good conditions for irrigation",
+    "rec2": "Monitor crops for pest activity",
+    "rec3": "Consider harvesting if ready",
+    "searchPlaceholder": "Search for a city or location...",
+    "popularCities": "Popular Cities",
+    "favoriteLocations": "Favorite Locations",
+    "useCurrentLocation": "Use Current Location"
+  },
+  "crops": {
+    "title": "Crop Information",
+    "subtitle": "Detailed guides for various crops.",
+    "seedTypes": "Seed Types",
+    "bestPractices": "Best Practices",
+    "soilCompatibility": "Soil Compatibility",
+    "fertilizer": "Fertilizer Guide",
+    "searchPlaceholder": "Search by crop name...",
+    "allSeasons": "All Seasons",
+    "seasons": {
+      "kharif": "Kharif",
+      "rabi": "Rabi",
+      "zaid": "Zaid",
+      "annual": "Annual"
+    },
+    "viewDetails": "View Details",
+    "growingInfo": "Growing Information",
+    "season": "Season",
+    "growthPeriod": "Growth Period",
+    "soilType": "Soil Type",
+    "waterRequirement": "Water Requirement",
+    "seedsAndFertilizers": "Seeds & Fertilizers",
+    "seedVarieties": "Seed Varieties",
+    "fertilizers": "Fertilizers",
+    "noResults": "No crops found for the selected filters."
+  },
+  "diseases": {
+    "title": "Plant Disease Detection",
+    "subtitle": "Upload an image to identify crop diseases",
+    "detectDisease": "Start Detection",
+    "instructions": "For best results, use a clear, close-up image of the affected plant part (leaf, stem, etc.).",
+    "errorTitle": "Error",
+    "errorFileSize": "File size should not exceed 5MB.",
+    "chooseImage": "Choose Image",
+    "analyze": "Analyze Disease",
+    "analyzing": "Analyzing...",
+    "selectedCropAlt": "Selected crop",
+    "removeImage": "Remove",
+    "uploadPrompt": "Your image will appear here.",
+    "aiWorking": "Our AI is analyzing your image...",
+    "diseaseDetected": "Disease Detected",
+    "resultDisclaimer": "This is an AI-generated result. Please consult a local agriculture expert for confirmation.",
+    "symptoms": "Symptoms",
+    "causes": "Possible Causes",
+    "treatment": "Treatment Recommendations",
+    "prevention": "Prevention Strategies",
+    "environment": "Favorable Environment",
+    "humidity": "Humidity",
+    "temperature": "Temperature",
+    "wind": "Wind",
+    "pesticides": "Pesticide Suggestions",
+    "dosage": "Dosage",
+    "safety": "Safety Precautions",
+    "commonDiseases": "Common Crop Diseases",
+    "affects": "Affects:",
+    "safetyGuidelines": "Pesticide Safety Guidelines",
+    "safetyPoints": [
+      "Always wear protective clothing (gloves, masks, glasses) when handling pesticides.",
+      "Strictly follow the dosage and application instructions on the product label.",
+      "Store pesticides in their original, tightly sealed containers, away from children and food.",
+      "Avoid spraying during windy conditions or when rain is expected to prevent drift and runoff."
+    ],
+    "db": {
+      "1": {
+        "name": "Leaf Blast",
+        "crop": "Rice",
+        "symptoms": [
+          "Diamond-shaped lesions with gray centers",
+          "Brown spots on leaves",
+          "Leaf yellowing and wilting",
+          "Neck blast affecting panicles"
+        ],
+        "causes": [
+          "Fungus: Magnaporthe oryzae",
+          "High humidity & frequent rain",
+          "Excessive nitrogen fertilizer",
+          "Cool temperatures"
+        ],
+        "treatment": [
+          "Apply fungicides like Tricyclazole or Propiconazole",
+          "Remove and destroy infected plant parts",
+          "Improve field drainage and air circulation"
+        ],
+        "prevention": [
+          "Use resistant rice varieties",
+          "Maintain proper plant spacing",
+          "Balanced fertilizer application",
+          "Seed treatment with fungicides"
+        ],
+        "env": {
+          "wind": "Calm to light breeze can spread spores"
+        }
+      },
+      "2": {
+        "name": "Rust",
+        "crop": "Wheat",
+        "symptoms": [
+          "Orange to reddish-brown pustules on leaves and stems",
+          "Powdery texture on pustules",
+          "Yellowing of leaves",
+          "Stunted growth"
+        ],
+        "causes": [
+          "Fungus: Puccinia spp.",
+          "High moisture and humidity",
+          "Moderate temperatures"
+        ],
+        "treatment": [
+          "Foliar application of fungicides like Tebuconazole",
+          "Early detection and spraying is crucial"
+        ],
+        "prevention": [
+          "Planting resistant varieties",
+          "Crop rotation",
+          "Timely planting"
+        ],
+        "env": {
+          "wind": "Wind aids in spore dispersal over long distances"
+        }
+      },
+      "3": {
+        "name": "Bollworm",
+        "crop": "Cotton",
+        "symptoms": [
+          "Holes in bolls and squares",
+          "Damaged flowers and buds",
+          "Presence of larvae inside bolls",
+          "Reduced cotton yield and quality"
+        ],
+        "causes": [
+          "Pest: Helicoverpa armigera",
+          "Monocropping of cotton",
+          "Favorable weather for moth activity"
+        ],
+        "treatment": [
+          "Use of biopesticides like NPV (Nuclear Polyhedrosis Virus)",
+          "Application of insecticides like Emamectin Benzoate"
+        ],
+        "prevention": [
+          "Planting Bt cotton varieties",
+          "Use of pheromone traps to monitor moth population",
+          "Encouraging natural predators"
+        ],
+        "env": {
+          "wind": "Moths can travel with wind"
+        }
+      }
+    }
+  },
+  "prices": {
+    "title": "Mandi Prices",
+    "subtitle": "Latest agricultural commodity prices from various markets.",
+    "todayPrices": "Today's Prices",
+    "priceHistory": "Price History",
+    "cropFilter": "Filter by Crop",
+    "locationFilter": "Filter by Location",
+    "searchPlaceholder": "Search by crop, variety, or market...",
+    "allCrops": "All Crops",
+    "allStates": "All States",
+    "lastUpdated": "Last Updated",
+    "cardView": "Card View",
+    "tableView": "Table View",
+    "noResults": "No prices found for the selected filters.",
+    "marketTipsTitle": "Market Tips",
+    "marketTips": [
+      "Best selling time for vegetables is early morning in mandis.",
+      "Check multiple market prices before finalizing a sale.",
+      "Monitor weather forecasts as they affect price volatility.",
+      "Consider storage options during price dips to sell later."
+    ],
+    "change": "Change",
+    "units": {
+      "quintal": "Quintal",
+      "ton": "Ton",
+      "kg": "Kg"
+    },
+    "crops": {
+      "rice": "Rice",
+      "wheat": "Wheat",
+      "cotton": "Cotton",
+      "sugarcane": "Sugarcane",
+      "onion": "Onion",
+      "tomato": "Tomato",
+      "soybean": "Soybean",
+      "potato": "Potato",
+      "mustard": "Mustard"
+    },
+    "states": {
+      "haryana": "Haryana",
+      "madhyapradesh": "Madhya Pradesh",
+      "telangana": "Telangana",
+      "maharashtra": "Maharashtra",
+      "andhrapradesh": "Andhra Pradesh",
+      "uttarpradesh": "Uttar Pradesh",
+      "rajasthan": "Rajasthan"
+    }
+  },
+  "schemes": {
+    "title": "Government Schemes",
+    "subtitle": "Explore beneficial schemes for farmers from central and state governments.",
+    "available": "Available Schemes",
+    "eligibility": "Eligibility",
+    "application": "Application Process",
+    "subsidies": "Subsidies",
+    "searchPlaceholder": "Search by scheme name or description...",
+    "allCategories": "All Categories",
+    "categories": {
+      "directbenefit": "Direct Benefit",
+      "soilmanagement": "Soil Management",
+      "insurance": "Insurance",
+      "credit": "Credit",
+      "infrastructure": "Infrastructure"
+    },
+    "status": {
+      "active": "Active",
+      "upcoming": "Upcoming",
+      "expired": "Expired"
+    },
+    "benefits": "Benefits",
+    "documents": "Documents Required",
+    "officialSite": "Official Site",
+    "noResults": "No schemes found for the selected filters.",
+    "close": "Close",
+    "loading": "Loading Schemes...",
+    "fetchError": "Failed to fetch schemes. Please try again.",
+    "viewDetails": "View Details",
+    "about": "About Scheme"
+  },
+  "common": {
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "loading": "Loading...",
+    "error": "Error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "submit": "Submit",
+    "close": "Close"
+  },
+  "profile": {
+    "editProfile": "Edit Profile",
+    "farmInfo": "Personal & Farm Information",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "location": "Location",
+    "farmSize": "Farm Size (in Acres)",
+    "experience": "Farming Experience (in Years)",
+    "primaryCrops": "Primary Crops",
+    "settings": "Settings",
+    "language": "Language",
+    "notifications": "Notifications",
+    "notificationTypes": {
+      "weather": "Weather Alerts",
+      "prices": "Mandi Price Updates",
+      "diseases": "Disease Outbreak Warnings",
+      "schemes": "New Government Schemes"
+    },
+    "account": "Account & Security",
+    "changePassword": "Change Password",
+    "logout": "Logout"
+  },
+  "auth": {
+    "loginTitle": "Login to Your Account",
+    "login": "Login",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "noAccount": "Don't have an account?",
+    "registerHere": "Register here",
+    "registerTitle": "Create a New Account",
+    "register": "Register",
+    "haveAccount": "Already have an account?",
+    "loginHere": "Login here"
+  },
+  "aiagent": {
+    "title": "AI Agriculture Agent",
+    "subtitle": "Ask me anything about farming",
+    "placeholder": "Type your question here...",
+    "voiceInput": "Voice Input",
+    "startListening": "Start Listening",
+    "stopListening": "Stop Listening",
+    "speak": "Speak",
+    "speaking": "Speaking...",
+    "voiceNotSupported": "Your browser doesn't support voice"
+  }
+}

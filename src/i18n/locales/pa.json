@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": "ਸਮਾਰਟ ਕ੍ਰਿਸ਼ੀ ਸਹਾਇਕ",
+    "subtitle": "ਤੁਹਾਡਾ ਖੇਤੀ ਸਹਾਇਕ"
+  },
+  "navigation": {
+    "dashboard": "ਡੈਸ਼ਬੋਰਡ",
+    "weather": "ਮੌਸਮ",
+    "crops": "ਫਸਲ ਜਾਣਕਾਰੀ",
+    "diseases": "ਬਿਮਾਰੀ ਪਛਾਣ",
+    "prices": "ਮੰਡੀ ਭਾਅ",
+    "schemes": "ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ",
+    "agent": "AI ਏਜੰਟ",
+    "profile": "ਪ੍ਰੋਫਾਈਲ"
+  },
+  "dashboard": {
+    "welcome": "ਸਮਾਰਟ ਕ੍ਰਿਸ਼ੀ ਸਹਾਇਕ ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ",
+    "todayWeather": "ਅੱਜ ਦਾ ਮੌਸਮ",
+    "quickActions": "ਫਟਾਫਟ ਕਾਰਵਾਈਆਂ",
+    "recentAlerts": "ਹਾਲ ਦੀਆਂ ਚੇਤਾਵਨੀਆਂ",
+    "marketPrices": "ਮਾਰਕਿਟ ਭਾਅ",
+    "viewAllPrices": "ਸਾਰੇ ਭਾਅ ਵੇਖੋ"
+  },
+  "weather": {
+    "title": "ਮੌਸਮ ਪੂਰਵਾਨੁਮਾਨ",
+    "temperature": "ਤਾਪਮਾਨ",
+    "humidity": "ਨਮੀ",
+    "rainfall": "ਬਾਰਸ਼",
+    "windSpeed": "ਹਵਾ ਦੀ ਗਤੀ",
+    "forecast": "7-ਦਿਨਾਂ ਦਾ ਪੂਰਵਾਨੁਮਾਨ",
+    "location": "ਸਥਿਤੀ",
+    "fetching": "ਮੌਸਮ ਡੇਟਾ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ...",
+    "fetchError": "ਮੌਸਮ ਡੇਟਾ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕੇ",
+    "locationError": "ਸਥਿਤੀ ਪਹੁੰਚ ਤੋਂ ਮਨ੍ਹਾ ਕਰ ਦਿੱਤਾ। ਮੌਸਮ ਡੇਟਾ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਥਿਤੀ ਪਹੁੰਚ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ।",
+    "noGeolocation": "ਇਹ ਬ੍ਰਾਊਜ਼ਰ ਭੂਗੋਲਿਕ ਸਥਿਤੀ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ",
+    "visibility": "ਦਿੱਖ",
+    "feelsLike": "ਮਹਿਸੂਸ ਹੁੰਦਾ ਹੈ",
+    "recommendations": "ਫਸਲ ਸਿਫਾਰਿਸ਼ਾਂ",
+    "recommendationText": "ਮੌਜੂਦਾ ਮੌਸਮੀ ਸਥਿਤੀਆਂ ਦੇ ਅਧਾਰ ਤੇ:",
+    "rec1": "ਸਿੰਚਾਈ ਲਈ ਚੰਗੀਆਂ ਸਥਿਤੀਆਂ",
+    "rec2": "ਕੀੜੇ-ਮਕੌੜਿਆਂ ਦੀ ਗਤੀਵਿਧੀ ਲਈ ਫਸਲਾਂ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ",
+    "rec3": "ਤਿਆਰ ਹੋਣ 'ਤੇ ਫਸਲ ਕੱਟਣ ਦਾ ਵਿਚਾਰ ਕਰੋ"
+  },
+  "crops": {
+    "title": "ਫਸਲ ਜਾਣਕਾਰੀ",
+    "subtitle": "ਵੱਖ-ਵੱਖ ਫਸਲਾਂ ਲਈ ਵਿਸਤ੍ਰਿਤ ਗਾਈਡ।",
+    "seedTypes": "ਬੀਜ ਦੀਆਂ ਕਿਸਮਾਂ",
+    "bestPractices": "ਸਭ ਤੋਂ ਵਧੀਆ ਅਭਿਆਸ",
+    "soilCompatibility": "ਮਿੱਟੀ ਦੀ ਅਨੁਕੂਲਤਾ",
+    "fertilizer": "ਖਾਦ ਗਾਈਡ",
+    "searchPlaceholder": "ਫਸਲ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
+    "allSeasons": "ਸਾਰੇ ਮੌਸਮ",
+    "seasons": {
+      "kharif": "ਖਰੀਫ",
+      "rabi": "ਰਬੀ",
+      "zaid": "ਜ਼ਾਇਦ",
+      "annual": "ਸਾਲਾਨਾ"
+    },
+    "viewDetails": "ਵੇਰਵੇ ਵੇਖੋ",
+    "growingInfo": "ਵਧਣ ਦੀ ਜਾਣਕਾਰੀ",
+    "season": "ਮੌਸਮ",
+    "growthPeriod": "ਵਿਕਾਸ ਦੀ ਮਿਆਦ",
+    "soilType": "ਮਿੱਟੀ ਦੀ ਕਿਸਮ",
+    "waterRequirement": "ਪਾਣੀ ਦੀ ਲੋੜ",
+    "seedsAndFertilizers": "ਬੀਜ ਅਤੇ ਖਾਦਾਂ",
+    "seedVarieties": "ਬੀਜ ਦੀਆਂ ਕਿਸਮਾਂ",
+    "fertilizers": "ਖਾਦਾਂ",
+    "noResults": "ਚੁਣੇ ਗਏ ਫਿਲਟਰਾਂ ਲਈ ਕੋਈ ਫਸਲਾਂ ਨਹੀਂ ਮਿਲੀਆਂ।"
+  },
+  "common": {
+    "search": "ਖੋਜੋ",
+    "filter": "ਫਿਲਟਰ",
+    "refresh": "ਤਾਜ਼ਾ ਕਰੋ",
+    "loading": "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+    "error": "ਗਲਤੀ ਹੋਈ",
+    "retry": "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+    "cancel": "ਰੱਦ ਕਰੋ",
+    "save": "ਸੇਵ ਕਰੋ",
+    "submit": "ਸਬਮਿਟ ਕਰੋ",
+    "close": "ਬੰਦ ਕਰੋ"
+  },
+  "aiagent": {
+    "title": "AI ਖੇਤੀ ਏਜੰਟ",
+    "subtitle": "ਖੇਤੀ ਬਾਰੇ ਕੁਝ ਵੀ ਪੁੱਛੋ",
+    "placeholder": "ਆਪਣਾ ਸਵਾਲ ਇੱਥੇ ਲਿਖੋ...",
+    "voiceInput": "ਆਵਾਜ਼ ਇਨਪੁੱਟ",
+    "startListening": "ਸੁਣਨਾ ਸ਼ੁਰੂ ਕਰੋ",
+    "stopListening": "ਸੁਣਨਾ ਬੰਦ ਕਰੋ",
+    "speak": "ਬੋਲੋ",
+    "speaking": "ਬੋਲ ਰਿਹਾ ਹੈ...",
+    "voiceNotSupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਆਵਾਜ਼ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ"
+  }
+}

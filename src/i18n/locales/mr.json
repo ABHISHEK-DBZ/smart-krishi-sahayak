@@ -1,0 +1,93 @@
+{
+  "app": {
+    "title": "स्मार्ट कृषी सहायक",
+    "subtitle": "तुमचा शेती सहायक"
+  },
+  "navigation": {
+    "dashboard": "डॅशबोर्ड",
+    "weather": "हवामान",
+    "crops": "पीक माहिती",
+    "diseases": "रोग निदान",
+    "prices": "मंडई भाव",
+    "schemes": "सरकारी योजना",
+    "agent": "एआई एजंट",
+    "profile": "प्रोफाइल"
+  },
+  "dashboard": {
+    "welcome": "स्मार्ट कृषी सहायकमध्ये आपले स्वागत आहे",
+    "todayWeather": "आजचे हवामान",
+    "quickActions": "जलद कृती",
+    "recentAlerts": "अलीकडील सूचना",
+    "marketPrices": "बाजार भाव",
+    "viewAllPrices": "सर्व भाव पहा"
+  },
+  "weather": {
+    "title": "हवामान अंदाज",
+    "temperature": "तापमान",
+    "humidity": "आर्द्रता",
+    "rainfall": "पाऊस",
+    "windSpeed": "वाऱ्याचा वेग",
+    "forecast": "७-दिवसांचा अंदाज",
+    "location": "स्थान",
+    "fetching": "हवामान डेटा मिळवत आहे...",
+    "fetchError": "हवामान डेटा मिळवू शकलो नाही",
+    "locationError": "स्थान प्रवेश नाकारला. हवामान डेटा मिळवण्यासाठी कृपया स्थान प्रवेशास परवानगी द्या.",
+    "noGeolocation": "हा ब्राउझर भौगोलिक स्थान समर्थित नाही",
+    "visibility": "दृश्यता",
+    "feelsLike": "जाणवते",
+    "recommendations": "पीक शिफारसी",
+    "recommendationText": "सध्याच्या हवामान परिस्थितीच्या आधारे:",
+    "rec1": "सिंचनासाठी चांगली परिस्थिती",
+    "rec2": "कीड क्रियाकलापासाठी पिकांचे निरीक्षण करा",
+    "rec3": "तयार असल्यास कापणी करण्याचा विचार करा"
+  },
+  "crops": {
+    "title": "पीक माहिती",
+    "subtitle": "विविध पिकांसाठी तपशीलवार मार्गदर्शक.",
+    "seedTypes": "बियाणे प्रकार",
+    "bestPractices": "सर्वोत्तम पद्धती",
+    "soilCompatibility": "मातीची अनुकूलता",
+    "fertilizer": "खत मार्गदर्शक",
+    "searchPlaceholder": "पिकाच्या नावाने शोधा...",
+    "allSeasons": "सर्व हंगाम",
+    "seasons": {
+      "kharif": "खरीप",
+      "rabi": "रब्बी",
+      "zaid": "जायद",
+      "annual": "वार्षिक"
+    },
+    "viewDetails": "तपशील पहा",
+    "growingInfo": "वाढण्याची माहिती",
+    "season": "हंगाम",
+    "growthPeriod": "वाढीचा कालावधी",
+    "soilType": "मातीचा प्रकार",
+    "waterRequirement": "पाण्याची गरज",
+    "seedsAndFertilizers": "बियाणे आणि खते",
+    "seedVarieties": "बियाणे वाणांच्या",
+    "fertilizers": "खते",
+    "noResults": "निवडलेल्या फिल्टरसाठी कोणतीही पिके आढळली नाहीत."
+  },
+  "common": {
+    "search": "शोधा",
+    "filter": "फिल्टर",
+    "refresh": "रिफ्रेश",
+    "loading": "लोड होत आहे...",
+    "error": "त्रुटी झाली",
+    "retry": "पुन्हा प्रयत्न करा",
+    "cancel": "रद्द करा",
+    "save": "सेव्ह करा",
+    "submit": "सबमिट करा",
+    "close": "बंद करा"
+  },
+  "aiagent": {
+    "title": "एआई शेती एजंट",
+    "subtitle": "शेतीबद्दल काहीही विचारा",
+    "placeholder": "तुमचा प्रश्न येथे लिहा...",
+    "voiceInput": "आवाज इनपुट",
+    "startListening": "ऐकणे सुरू करा",
+    "stopListening": "ऐकणे थांबवा",
+    "speak": "बोला",
+    "speaking": "बोलत आहे...",
+    "voiceNotSupported": "तुमचा ब्राउझर व्हॉइस सपोर्ट करत नाही"
+  }
+}
