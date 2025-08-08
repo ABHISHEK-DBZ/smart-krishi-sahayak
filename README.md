@@ -219,9 +219,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For support and queries:
-- Email: support@smartkrishisahayak.com
+- Email: abhibro936@gmail.com
 - Website: https://smartkrishisahayak.com
-- Phone: +91-XXXXXXXXXX
+- Phone: +91-7841938644
 
 ## 🙏 Acknowledgments
 
