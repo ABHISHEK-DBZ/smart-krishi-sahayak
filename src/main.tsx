@@ -2,113 +2,62 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import './i18n/config' // Import i18n synchronously
+
+console.log('🌾 Initializing Smart Krishi Sahayak...');
+
+// Hide loading screen immediately
+const hideLoadingScreen = () => {
+  const loading = document.getElementById('loading-screen');
+  if (loading) {
+    loading.style.display = 'none';
+    console.log('✅ Loading screen hidden');
+  }
+};
 
 const container = document.getElementById('root');
 
 if (container) {
-  // Clear any existing content
-  container.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Arial;"><h2>🌾 Loading Smart Krishi Sahayak...</h2><p>Initializing full application</p></div>';
-  
   const root = ReactDOM.createRoot(container);
   
-  // Hide loading screen immediately
-  const hideLoading = () => {
-    const loading = document.getElementById('loading-screen');
-    if (loading) {
-      loading.style.display = 'none';
-    }
-  };
-  
-  hideLoading();
-  
   try {
-    console.log('Loading full Smart Krishi Sahayak app...');
+    // Hide loading screen before rendering
+    hideLoadingScreen();
     
-    // Load i18n config asynchronously
-    import('./i18n/config').then(() => {
-      console.log('i18n config loaded successfully');
-      
-      root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>,
-      );
-      
-      console.log('Full app rendered successfully');
-      
-    }).catch((error) => {
-      console.error('Failed to load i18n config:', error);
-      // Try to render app without i18n
-      console.log('Attempting to load app without i18n...');
-      root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>,
-      );
-    });
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+    
+    console.log('✅ Smart Krishi Sahayak loaded successfully!');
+    
+    // Ensure loading screen is hidden after render
+    setTimeout(hideLoadingScreen, 100);
     
   } catch (error) {
-    console.error('Error in main.tsx:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    console.error('❌ Error loading app:', error);
+    hideLoadingScreen();
     container.innerHTML = `
-      <div style="text-align: center; padding: 50px; font-family: Arial;">
-        <h2>🌾 Smart Krishi Sahayak</h2>
-        <p style="color: red;">Error loading full app: ${errorMessage}</p>
-        <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-          Refresh Page
+      <div style="text-align: center; padding: 50px; font-family: Arial; color: #333; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h2 style="color: #16a34a; margin-bottom: 20px;">🌾 Smart Krishi Sahayak</h2>
+        <p style="color: red; margin: 20px 0;">Loading error occurred</p>
+        <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 20px;">
+          🔄 Refresh App
         </button>
       </div>
     `;
   }
-  
 } else {
-  console.error('Root container not found');
+  console.error('❌ Root container not found');
+  hideLoadingScreen();
   document.body.innerHTML = `
-    <div style="text-align: center; padding: 50px; font-family: Arial;">
-      <h2>🌾 Smart Krishi Sahayak</h2>
-      <p style="color: red;">Error: Could not find app container</p>
-      <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-        Refresh Page
+    <div style="text-align: center; padding: 50px; font-family: Arial; color: #333; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <h2 style="color: #16a34a; margin-bottom: 20px;">🌾 Smart Krishi Sahayak</h2>
+      <p style="color: red; margin: 20px 0;">App container missing</p>
+      <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 20px;">
+        🔄 Refresh Page
       </button>
     </div>
   `;
-}
-
-// Register Service Worker for PWA functionality
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/smart-krishi-sahayak/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
-}
-
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/smart-krishi-sahayak/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
-}
-
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/smart-krishi-sahayak/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
 }
