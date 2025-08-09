@@ -1,18 +1,15 @@
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
-console.log('🌾 Loading Smart Krishi Sahayak - Simplified Version');
-
-// Hide loading screen immediately
-const loadingElement = document.getElementById('loading-screen');
-if (loadingElement) {
-  loadingElement.style.display = 'none';
-  console.log('Loading screen hidden');
-}
+// Immediately hide loading screen
+setTimeout(() => {
+  const loadingElement = document.getElementById('loading-screen');
+  if (loadingElement) {
+    loadingElement.style.display = 'none';
+  }
+}, 10);
 
 const SimpleKrishiApp = () => {
-  console.log('Rendering Simple Krishi App');
-  
   return (
     <div style={{
       minHeight: '100vh',
@@ -204,22 +201,21 @@ const container = document.getElementById('root');
 
 if (container) {
   try {
-    console.log('Creating React root...');
     const root = ReactDOM.createRoot(container);
     root.render(<SimpleKrishiApp />);
     console.log('✅ Simple Krishi App loaded successfully!');
   } catch (error) {
-    console.error('❌ Error rendering app:', error);
+    console.error('❌ Error:', error);
     container.innerHTML = `
-      <div style="text-align: center; padding: 50px; background: #fee; color: #c00; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+      <div style="text-align: center; padding: 50px; background: #fee; color: #c00;">
         <h2>🌾 Smart Krishi Sahayak</h2>
         <p>Error: ${error instanceof Error ? error.message : 'Unknown error'}</p>
-        <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px;">
-          🔄 Reload App
+        <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer;">
+          🔄 Reload
         </button>
       </div>
     `;
   }
 } else {
-  console.error('❌ No root container found');
+  console.error('❌ No root container');
 }
