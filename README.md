@@ -1,60 +1,49 @@
-# 🌾 Smart Krishi Sahayak - Advanced Agriculture Assistant
+# Smart Krishi Sahayak - Agriculture Assistant App
 
-![Smart Krishi Sahayak](https://img.shields.io/badge/Smart%20Krishi%20Sahayak-Agriculture%20Assistant-green?style=for-the-badge&logo=leaf)
+A comprehensive agriculture assistant app that provides real-time weather updates, crop information, disease detection, mandi prices, and government schemes for farmers.
 
-**Smart Krishi Sahayak** is a comprehensive agriculture assistance application designed specifically for Indian farmers. The app provides advanced weather forecasting, AI-powered disease detection, crop information, market prices, and government schemes information in multiple Indian languages.
+## 🌟 Features
 
-## ✨ Key Features
+### 🌦️ Weather Module
+- Real-time weather forecast (rainfall, humidity, temperature)
+- Location-based weather data
+- Weather-based crop disease prediction
+- 7-day weather forecast
 
-### �️ **Advanced 5-Tab Weather System**
-- **Current Weather**: Real-time conditions with detailed metrics
-- **24-Hour Forecast**: Hourly predictions with rain probability
-- **7-Day Forecast**: Weekly weather planning for farmers
-- **Weather Alerts**: Critical warnings for crop protection
-- **Soil Analysis**: NPK levels, pH monitoring, moisture content with recommendations
-- **Location Search**: Search any city with favorites management
-- **Agricultural Recommendations**: Weather-based farming advice
+### 🌾 Crop Information
+- Detailed crop information including seed types and best practices
+- Soil compatibility guidance
+- Fertilizer and pesticide recommendations
+- Seasonal planting guides
 
-### 🔬 **AI-Powered Disease Detection**
-- **Smart Plant Recognition**: Advanced image validation - no more false positives!
-- **Accurate Disease Identification**: Fixed the "watch detected as rice disease" issue
-- **Confidence Scoring**: Visual 25-85% accuracy indicators
-- **Comprehensive Analysis**: Symptoms, causes, treatment, prevention, and pesticide recommendations
-- **Image Quality Validation**: Automatic brightness, contrast, and resolution checks
-- **Multi-language Error Messages**: Hindi + English validation feedback
+### 🐛 Disease & Pesticide Recommendation
+- AI-powered crop disease detection from images
+- Pesticide usage recommendations
+- Safety guidelines and dosage information
+- Common disease database
 
-### 🌱 **Crop Information Database**
-- Detailed crop cultivation guides
-- Seed varieties and recommendations
-- Soil compatibility analysis
-- Seasonal planting calendars
-- Best practices and care instructions
+### 📈 Mandi Price Module
+- Daily market prices from Agmarknet
+- Crop-wise and location-wise filtering
+- Price trend analysis
+- Market recommendations
 
-### � **Market Prices (Mandi Rates)**
-- Real-time commodity pricing
-- Historical price trends
-- Market analysis and predictions
-- Price alerts for specific crops
-- Multi-location price comparison
+### 💰 Government Scheme Information
+- Latest government schemes and subsidies
+- Eligibility criteria and application process
+- Direct links to official portals
+- Multi-language support
 
-### 🏛️ **Government Schemes Portal**
-- PM-KISAN, PMFBY, and other scheme information
-- Eligibility criteria and application procedures
-- Required documentation checklists
-- Scheme benefits calculator
-- Direct links to government portals
+### 🔔 Smart Alerts
+- Weather warnings and forecasts
+- Crop care reminders
+- Price alerts and market updates
+- Government scheme notifications
 
-### 🗣️ **Multi-Language Support (7 Languages)**
-- **Hindi (हिंदी)**, **Marathi (मराठी)**, **Gujarati (ગુજરાતી)**
-- **Tamil (தமிழ்)**, **Telugu (తెలుగు)**, **Punjabi (ਪੰਜਾਬੀ)**, **English**
-- **Voice Support**: Speech recognition and text-to-speech in all languages
-- **Regional Content**: Localized farming information
-
-### 🤖 **AI Assistant**
-- Voice-enabled crop consultation
-- Natural language query processing
-- Personalized farming recommendations
-- Expert agricultural advice
+### 🌍 Multilingual Support
+- Hindi and English language support
+- Easy language switching
+- Localized content for farmers
 
 ## 🚀 Tech Stack
 
