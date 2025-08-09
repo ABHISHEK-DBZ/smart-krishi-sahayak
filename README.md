@@ -4,6 +4,15 @@ A comprehensive agriculture assistant app that provides real-time weather update
 
 ## 🌟 Features
 
+### 🤖 AI Agriculture Agent
+- GPT-powered farming assistant
+- Real-time farming advice and solutions
+- Crop-specific recommendations
+- Disease diagnosis and treatment suggestions
+- Government scheme guidance
+- Voice interaction support
+- Multilingual responses (Hindi/English)
+
 ### 🌦️ Weather Module
 - Real-time weather forecast (rainfall, humidity, temperature)
 - Location-based weather data
@@ -110,10 +119,25 @@ src/
 Create a `.env` file in the root directory:
 
 ```env
+# OpenAI API for AI Agriculture Agent
+VITE_OPENAI_API_KEY=sk-proj-your-openai-api-key-here
+
+# Weather API (Optional - has fallback data)
 VITE_OPENWEATHER_API_KEY=your_openweather_api_key
+
+# Government APIs (Optional - has fallback data)
 VITE_AGMARKNET_API_URL=https://api.data.gov.in/resource/
-VITE_API_BASE_URL=your_backend_api_url
 ```
+
+### Setting up OpenAI API Key
+
+1. Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create an account or sign in
+3. Generate a new API key
+4. Copy the key and add it to your `.env` file
+5. Restart the development server
+
+**Note**: The AI Agent will work with sample responses if no API key is provided, but for genuine agricultural advice, an OpenAI API key is required.
 
 ### API Integration
 
