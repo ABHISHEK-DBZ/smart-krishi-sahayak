@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/smart-krishi-sahayak/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Smart Krishi Sahayak is a modern web application for farmers in India, providing weather forecasts, crop information, disease detection, market prices, and details on government schemes." />
     <meta name="keywords" content="agriculture, farming, india, krishi, sahayak, farmers, crop, weather, mandi prices, government schemes, plant disease" />
     <title>Smart Krishi Sahayak - Agriculture Assistant</title>
     
     <!-- PWA Configuration -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/smart-krishi-sahayak/manifest.json">
     <meta name="theme-color" content="#16a34a">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,7 +21,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
+          navigator.serviceWorker.register('/smart-krishi-sahayak/sw.js')
             .then((registration) => {
               console.log('SW registered: ', registration);
             })
@@ -44,10 +44,29 @@
           );
         }
       }(window.location))
+      
+      // Debug logging
+      console.log('Loading Smart Krishi Sahayak...');
+      console.log('Current URL:', window.location.href);
+      console.log('Base URL should be:', '/smart-krishi-sahayak/');
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: Arial, sans-serif;">
+        <div style="text-align: center;">
+          <h1 style="color: #16a34a;">🌾 Smart Krishi Sahayak</h1>
+          <p>Loading agriculture assistant...</p>
+          <div style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #16a34a; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+        </div>
+      </div>
+      <style>
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
