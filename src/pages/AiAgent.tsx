@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bot, Send, User, Loader, BrainCircuit, Mic, MicOff, Volume2, VolumeX, AlertTriangle } from 'lucide-react';
-import aiService from '../services/aiService';
+import { Bot, Send, User, Loader, BrainCircuit, Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
+import simpleAiService from '../services/simpleAiService';
 
 // Extend the Window interface for speech recognition
 declare global {
@@ -149,7 +149,7 @@ const AiAgent: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await aiService.getAgricultureResponse(currentInput, i18n.language);
+      const response = await simpleAiService.getAgricultureResponse(currentInput, i18n.language);
       
       const botResponse: Message = {
         text: response,
@@ -196,9 +196,9 @@ const AiAgent: React.FC = () => {
         
         {/* Voice Controls */}
         <div className="flex items-center space-x-2">
-          {!aiService.isConfigured() && (
+          {!simpleAiService.isConfigured() && (
             <div className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
-              ⚠️ OpenAI API needed
+              ⚠️ Using Sample Responses
             </div>
           )}
           
@@ -224,25 +224,17 @@ const AiAgent: React.FC = () => {
       </div>
 
       <div className="flex-grow p-6 overflow-y-auto space-y-6">
-        {!aiService.isConfigured() && (
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-            <div className="flex items-start">
-              <AlertTriangle className="text-yellow-600 mr-3 mt-1" size={20} />
-              <div>
-                <h3 className="font-semibold text-yellow-800">OpenAI API Key Required</h3>
-                <p className="text-yellow-700 text-sm mt-1">
-                  To get genuine AI responses, add your OpenAI API key to the .env file:
-                </p>
-                <code className="block bg-yellow-100 p-2 mt-2 text-xs rounded">
-                  VITE_OPENAI_API_KEY=sk-proj-your-api-key-here
-                </code>
-                <p className="text-yellow-600 text-xs mt-2">
-                  Get your API key from: <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="underline">platform.openai.com</a>
-                </p>
-              </div>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+          <div className="flex items-start">
+            <BrainCircuit className="text-blue-600 mr-3 mt-1" size={20} />
+            <div>
+              <h3 className="font-semibold text-blue-800">AI Agriculture Assistant Ready!</h3>
+              <p className="text-blue-700 text-sm mt-1">
+                Ask me about crops, weather, diseases, government schemes, and farming techniques.
+              </p>
             </div>
           </div>
-        )}
+        </div>
 
         {messages.map((msg, index) => (
           <div key={index} className={`flex items-end gap-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>

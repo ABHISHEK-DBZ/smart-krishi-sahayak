@@ -4,13 +4,25 @@ class AIService {
   private openai: OpenAI | null = null;
 
   constructor() {
-    const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-    
-    if (apiKey && apiKey !== 'your_openai_api_key_here') {
-      this.openai = new OpenAI({
-        apiKey: apiKey,
-        dangerouslyAllowBrowser: true // Note: In production, use a backend proxy
-      });
+    this.initializeOpenAI();
+  }
+
+  private initializeOpenAI() {
+    try {
+      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+      
+      if (apiKey && apiKey !== 'your_openai_api_key_here' && apiKey.startsWith('sk-')) {
+        this.openai = new OpenAI({
+          apiKey: apiKey,
+          dangerouslyAllowBrowser: true // Note: In production, use a backend proxy
+        });
+        console.log('OpenAI client initialized successfully');
+      } else {
+        console.log('OpenAI API key not found or invalid, using fallback responses');
+      }
+    } catch (error) {
+      console.error('Error initializing OpenAI client:', error);
+      this.openai = null;
     }
   }
 
