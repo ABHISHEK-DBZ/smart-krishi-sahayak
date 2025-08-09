@@ -23,7 +23,7 @@ const PrivateRoute: React.FC<{ children: React.ReactElement }> = ({ children }) 
 
 function App() {
   return (
-    <Router>
+    <Router basename="/smart-krishi-sahayak">
       <div className="min-h-screen bg-gray-50">
         {isAuthenticated() && <Navbar />}
         <main className={isAuthenticated() ? "container mx-auto px-4 py-8" : ""}>

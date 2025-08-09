@@ -7,6 +7,20 @@
     <meta name="description" content="Smart Krishi Sahayak is a modern web application for farmers in India, providing weather forecasts, crop information, disease detection, market prices, and details on government schemes." />
     <meta name="keywords" content="agriculture, farming, india, krishi, sahayak, farmers, crop, weather, mandi prices, government schemes, plant disease" />
     <title>Smart Krishi Sahayak - Agriculture Assistant</title>
+    <script>
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
   </head>
   <body>
     <div id="root"></div>
