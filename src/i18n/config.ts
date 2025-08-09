@@ -37,11 +37,15 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'hi', // default language - Hindi for farmers
+    lng: 'en', // Set to English first for faster loading
     fallbackLng: 'en',
+    debug: false, // Disable debug for production
     interpolation: {
       escapeValue: false,
     },
+    react: {
+      useSuspense: false // Disable suspense to prevent loading issues
+    }
   });
 
 export default i18n;
