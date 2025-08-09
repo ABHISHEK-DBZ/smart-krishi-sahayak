@@ -53,11 +53,12 @@
   </head>
   <body>
     <div id="root">
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: Arial, sans-serif;">
+      <div id="loading-screen" style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: Arial, sans-serif; background: #f9fafb;">
         <div style="text-align: center;">
-          <h1 style="color: #16a34a;">🌾 Smart Krishi Sahayak</h1>
-          <p>Loading agriculture assistant...</p>
-          <div style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #16a34a; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+          <h1 style="color: #16a34a; margin-bottom: 10px;">🌾 Smart Krishi Sahayak</h1>
+          <p style="color: #6b7280; margin-bottom: 20px;">Loading agriculture assistant...</p>
+          <div style="width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #16a34a; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+          <p style="color: #9ca3af; font-size: 12px; margin-top: 20px;">If this takes too long, <button onclick="location.reload()" style="color: #16a34a; border: none; background: none; cursor: pointer; text-decoration: underline;">click here to reload</button></p>
         </div>
       </div>
       <style>
@@ -65,8 +66,18 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
+        body { margin: 0; padding: 0; }
       </style>
     </div>
+    <script>
+      // Auto-reload if stuck for too long
+      setTimeout(() => {
+        const loading = document.getElementById('loading-screen');
+        if (loading && loading.style.display !== 'none') {
+          console.warn('App seems stuck, offering reload option');
+        }
+      }, 10000);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
