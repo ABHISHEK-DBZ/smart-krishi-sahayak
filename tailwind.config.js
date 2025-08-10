@@ -28,6 +28,46 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'fade-in-scale': 'fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+        'slide-in-up': 'slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+        'bounce-slow': 'bounce 2s infinite',
+        'pulse-slow': 'pulse 3s infinite',
+        'spin-slow': 'spin 2s linear infinite',
+      },
+      keyframes: {
+        fadeInScale: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(0.9)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)'
+          }
+        },
+        slideInUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translate3d(0, 100%, 0)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translate3d(0, 0, 0)'
+          }
+        }
+      },
+      backdropBlur: {
+        xs: '2px',
+      },
+      boxShadow: {
+        'soft': '0 4px 20px rgba(22, 163, 74, 0.15)',
+        'hover': '0 8px 30px rgba(22, 163, 74, 0.25)',
+        'glow': '0 0 20px rgba(22, 163, 74, 0.3)',
+      },
+      scale: {
+        '102': '1.02',
       }
     },
   },

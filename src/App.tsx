@@ -15,24 +15,49 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const AiAgent = lazy(() => import('./pages/AiAgent'));
 
-// Loading component
+// Enhanced Beautiful Loading Component
 const LoadingSpinner = () => (
-  <div style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '200px',
-    flexDirection: 'column'
-  }}>
-    <div style={{
-      width: '40px',
-      height: '40px',
-      border: '4px solid #e5e7eb',
-      borderTop: '4px solid #16a34a',
-      borderRadius: '50%',
-      animation: 'spin 1s linear infinite'
-    }}></div>
-    <p style={{ marginTop: '10px', color: '#6b7280' }}>Loading...</p>
+  <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    {/* Beautiful gradient background */}
+    <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-emerald-50"></div>
+    
+    {/* Animated background pattern */}
+    <div className="absolute inset-0 opacity-10">
+      <div className="absolute top-10 left-10 w-20 h-20 bg-green-400 rounded-full animate-bounce"></div>
+      <div className="absolute top-32 right-20 w-16 h-16 bg-blue-400 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-32 left-32 w-12 h-12 bg-emerald-400 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
+      <div className="absolute bottom-20 right-40 w-14 h-14 bg-green-300 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+    </div>
+    
+    {/* Main loading content */}
+    <div className="relative z-10 text-center animate-fade-in-scale">
+      <div className="relative mb-8">
+        {/* Outer ring */}
+        <div className="w-24 h-24 border-4 border-green-200 rounded-full animate-spin mx-auto"></div>
+        {/* Inner ring */}
+        <div className="absolute inset-0 w-24 h-24 border-4 border-transparent border-t-green-600 border-r-green-500 rounded-full animate-spin mx-auto" style={{ animationDuration: '0.8s' }}></div>
+        {/* Center dot */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-4 h-4 bg-green-600 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+      
+      {/* Loading text */}
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+          स्मार्ट कृषि सहायक
+        </h2>
+        <p className="text-green-700 font-semibold">लोड हो रहा है...</p>
+        <p className="text-green-600 text-sm">Smart Agriculture Assistant Loading...</p>
+      </div>
+      
+      {/* Progress dots */}
+      <div className="flex justify-center space-x-2 mt-6">
+        <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+        <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+        <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+      </div>
+    </div>
   </div>
 );
 
