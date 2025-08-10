@@ -17,120 +17,6 @@
     <meta name="apple-mobile-web-app-title" content="Krishi Sahayak">
     <link rel="apple-touch-icon" href="https://img.icons8.com/color/180/wheat.png">
     
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-        background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
-        color: white;
-        min-height: 100vh;
-      }
-      
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-        padding-top: 50px;
-      }
-      
-      .header {
-        margin-bottom: 40px;
-      }
-      
-      .title {
-        font-size: 3rem;
-        margin-bottom: 20px;
-      }
-      
-      .subtitle {
-        font-size: 1.3rem;
-        margin-bottom: 40px;
-      }
-      
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin: 40px 0;
-      }
-      
-      .feature-card {
-        background: rgba(255,255,255,0.1);
-        padding: 30px;
-        border-radius: 15px;
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s ease;
-      }
-      
-      .feature-card:hover {
-        transform: translateY(-5px);
-      }
-      
-      .feature-title {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-      }
-      
-      .feature-description {
-        margin-bottom: 15px;
-        opacity: 0.9;
-      }
-      
-      .feature-button {
-        background: rgba(255,255,255,0.2);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-        font-size: 14px;
-      }
-      
-      .feature-button:hover {
-        background: rgba(255,255,255,0.3);
-      }
-      
-      .status-card {
-        margin-top: 50px;
-        padding: 30px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        backdrop-filter: blur(10px);
-      }
-      
-      .success-message {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-      }
-      
-      .time-display {
-        margin-top: 15px;
-        font-size: 0.9rem;
-        opacity: 0.8;
-      }
-      
-      @media (max-width: 768px) {
-        .title {
-          font-size: 2rem;
-        }
-        
-        .subtitle {
-          font-size: 1.1rem;
-        }
-        
-        .features-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-    
     <script>
       // Single Page Apps for GitHub Pages routing
       (function(l) {
@@ -144,107 +30,31 @@
         }
       }(window.location))
       
-      console.log('🌾 Loading Smart Krishi Sahayak - Pure HTML Version');
-      
-      // Update time every second
-      function updateTime() {
-        const now = new Date();
-        const timeString = now.toLocaleString('hi-IN');
-        const timeElement = document.getElementById('current-time');
-        if (timeElement) {
-          timeElement.textContent = 'Current Time: ' + timeString;
-        }
-      }
-      
-      // Initialize when page loads
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('✅ Smart Krishi Sahayak loaded successfully!');
-        updateTime();
-        setInterval(updateTime, 1000);
-        
-        // Register Service Worker for PWA
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/smart-krishi-sahayak/sw.js')
-            .then(function(registration) {
-              console.log('✅ Service Worker registered:', registration);
-            })
-            .catch(function(error) {
-              console.log('⚠️ Service Worker registration failed:', error);
-            });
-        }
-      });
+      console.log('🌾 Loading Smart Krishi Sahayak - Full Application');
     </script>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h1 class="title">🌾 Smart Krishi Sahayak</h1>
-        <p class="subtitle">भारतीय किसानों के लिए स्मार्ट कृषि सहायक</p>
-      </div>
-      
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3 class="feature-title">🌦️ मौसम पूर्वानुमान</h3>
-          <p class="feature-description">5-दिन का विस्तृत मौसम पूर्वानुमान</p>
-          <button class="feature-button" onclick="alert('मौसम सेवा जल्द ही उपलब्ध होगी!')">
-            देखें
-          </button>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="feature-title">🌱 रोग पहचान</h3>
-          <p class="feature-description">AI द्वारा पौधों की बीमारी की पहचान</p>
-          <button class="feature-button" onclick="alert('रोग पहचान सेवा जल्द ही उपलब्ध होगी!')">
-            स्कैन करें
-          </button>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="feature-title">🤖 AI सहायक</h3>
-          <p class="feature-description">कृषि सम्बंधित सभी सवालों के जवाब</p>
-          <button class="feature-button" onclick="alert('AI सहायक जल्द ही उपलब्ध होगी!')">
-            पूछें
-          </button>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="feature-title">💰 मंडी भाव</h3>
-          <p class="feature-description">लाइव फसल की कीमतें देखें</p>
-          <button class="feature-button" onclick="alert('मंडी भाव सेवा जल्द ही उपलब्ध होगी!')">
-            देखें
-          </button>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="feature-title">🏛️ सरकारी योजनाएं</h3>
-          <p class="feature-description">किसानों के लिए सरकारी योजनाओं की जानकारी</p>
-          <button class="feature-button" onclick="alert('सरकारी योजनाएं जल्द ही उपलब्ध होंगी!')">
-            जानें
-          </button>
-        </div>
-
-        <div class="feature-card">
-          <h3 class="feature-title">📱 PWA App</h3>
-          <p class="feature-description">मोबाइल में ऐप की तरह इस्तेमाल करें</p>
-          <button class="feature-button" onclick="alert('ब्राउज़र मेनू से Add to Home Screen पर क्लिक करें!')">
-            Install करें
-          </button>
+    <div id="root">
+      <div id="loading-screen" style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; font-family: Arial, sans-serif; background: #f9fafb;">
+        <div style="text-align: center;">
+          <h1 style="color: #16a34a; margin-bottom: 15px; font-size: 2rem;">🌾 Smart Krishi Sahayak</h1>
+          <p style="color: #6b7280; margin-bottom: 25px; font-size: 1.1rem;">Loading full agriculture application...</p>
+          <div style="width: 50px; height: 50px; border: 4px solid #e5e7eb; border-top: 4px solid #16a34a; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
         </div>
       </div>
-
-      <div class="status-card">
-        <h2 class="success-message">✅ App Successfully Loaded!</h2>
-        <p>
-          Smart Krishi Sahayak is now working perfectly! <br/>
-          सभी features जल्द ही activate होंगे।
-        </p>
-        <p id="current-time" class="time-display">
-          Loading time...
-        </p>
-      </div>
+      <style>
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        body { 
+          margin: 0; 
+          padding: 0; 
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        }
+      </style>
     </div>
-    
-    <!-- Remove the React app script temporarily -->
-    <!-- <script type="module" src="/src/main.tsx"></script> -->
+    <!-- Restore the React app script for full application -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,202 +1,62 @@
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Weather from './pages/Weather';
+import CropInfo from './pages/CropInfo';
+import DiseaseDetection from './pages/DiseaseDetection';
+import MandiPrices from './pages/MandiPrices';
+import GovernmentSchemes from './pages/GovernmentSchemes';
+import Profile from './pages/Profile';
+import AiAgent from './pages/AiAgent';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
 import './index.css'
+import './i18n/config';
 
-console.log('🌾 Loading Smart Krishi Sahayak - Simplified Version');
+console.log('🌾 Starting Full Smart Krishi Sahayak Application...');
 
 // Hide loading screen immediately
 const loadingElement = document.getElementById('loading-screen');
 if (loadingElement) {
   loadingElement.style.display = 'none';
-  console.log('Loading screen hidden');
+  console.log('✅ Loading screen hidden - starting full app');
 }
 
-const SimpleKrishiApp = () => {
-  console.log('Rendering Simple Krishi App');
+const isAuthenticated = () => true; // Simplified auth for farmers
+
+const PrivateRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+  return isAuthenticated() ? children : <Navigate to="/login" />;
+};
+
+const FullKrishiApp = () => {
+  console.log('🚀 Full Krishi App component rendering...');
   
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)',
-      color: 'white',
-      padding: '20px',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        textAlign: 'center',
-        paddingTop: '50px'
-      }}>
-        <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>
-          🌾 Smart Krishi Sahayak
-        </h1>
-        <p style={{ fontSize: '1.3rem', marginBottom: '40px' }}>
-          भारतीय किसानों के लिए स्मार्ट कृषि सहायक
-        </p>
-        
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '20px',
-          marginTop: '40px'
-        }}>
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            padding: '30px',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-              🌦️ मौसम पूर्वानुमान
-            </h3>
-            <p>5-दिन का विस्तृत मौसम पूर्वानुमान</p>
-            <button style={{
-              background: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              marginTop: '15px',
-              cursor: 'pointer'
-            }} onClick={() => alert('मौसम सेवा जल्द ही उपलब्ध होगी!')}>
-              देखें
-            </button>
-          </div>
-
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            padding: '30px',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-              🌱 रोग पहचान
-            </h3>
-            <p>AI द्वारा पौधों की बीमारी की पहचान</p>
-            <button style={{
-              background: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              marginTop: '15px',
-              cursor: 'pointer'
-            }} onClick={() => alert('रोग पहचान सेवा जल्द ही उपलब्ध होगी!')}>
-              स्कैन करें
-            </button>
-          </div>
-
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            padding: '30px',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-              🤖 AI सहायक
-            </h3>
-            <p>कृषि सम्बंधित सभी सवालों के जवाब</p>
-            <button style={{
-              background: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              marginTop: '15px',
-              cursor: 'pointer'
-            }} onClick={() => alert('AI सहायक जल्द ही उपलब्ध होगी!')}>
-              पूछें
-            </button>
-          </div>
-
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            padding: '30px',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-              💰 मंडी भाव
-            </h3>
-            <p>लाइव फसल की कीमतें देखें</p>
-            <button style={{
-              background: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              marginTop: '15px',
-              cursor: 'pointer'
-            }} onClick={() => alert('मंडी भाव सेवा जल्द ही उपलब्ध होगी!')}>
-              देखें
-            </button>
-          </div>
-
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            padding: '30px',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-              🏛️ सरकारी योजनाएं
-            </h3>
-            <p>किसानों के लिए सरकारी योजनाओं की जानकारी</p>
-            <button style={{
-              background: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              marginTop: '15px',
-              cursor: 'pointer'
-            }} onClick={() => alert('सरकारी योजनाएं जल्द ही उपलब्ध होंगी!')}>
-              जानें
-            </button>
-          </div>
-
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            padding: '30px',
-            borderRadius: '15px',
-            backdropFilter: 'blur(10px)'
-          }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
-              📱 PWA App
-            </h3>
-            <p>मोबाइल में ऐप की तरह इस्तेमाल करें</p>
-            <button style={{
-              background: 'rgba(255,255,255,0.2)',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              marginTop: '15px',
-              cursor: 'pointer'
-            }} onClick={() => alert('ब्राउज़र मेनू से "Add to Home Screen" पर क्लिक करें!')}>
-              Install करें
-            </button>
-          </div>
+    <ErrorBoundary>
+      <Router basename="/smart-krishi-sahayak">
+        <div className="min-h-screen bg-gray-50">
+          {isAuthenticated() && <Navbar />}
+          <main className={isAuthenticated() ? "container mx-auto px-4 py-8" : ""}>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              
+              <Route path="/" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+              <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+              <Route path="/weather" element={<PrivateRoute><Weather /></PrivateRoute>} />
+              <Route path="/crop-info" element={<PrivateRoute><CropInfo /></PrivateRoute>} />
+              <Route path="/disease-detection" element={<PrivateRoute><DiseaseDetection /></PrivateRoute>} />
+              <Route path="/mandi-prices" element={<PrivateRoute><MandiPrices /></PrivateRoute>} />
+              <Route path="/schemes" element={<PrivateRoute><GovernmentSchemes /></PrivateRoute>} />
+              <Route path="/agent" element={<PrivateRoute><AiAgent /></PrivateRoute>} />
+              <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            </Routes>
+          </main>
         </div>
-
-        <div style={{
-          marginTop: '50px',
-          padding: '30px',
-          background: 'rgba(255,255,255,0.1)',
-          borderRadius: '15px',
-          backdropFilter: 'blur(10px)'
-        }}>
-          <h2 style={{ marginBottom: '20px' }}>✅ App Successfully Loaded!</h2>
-          <p style={{ fontSize: '1.1rem' }}>
-            Smart Krishi Sahayak is now working perfectly! <br/>
-            सभी features जल्द ही activate होंगे।
-          </p>
-          <p style={{ marginTop: '15px', fontSize: '0.9rem', opacity: 0.8 }}>
-            Current Time: {new Date().toLocaleString('hi-IN')}
-          </p>
-        </div>
-      </div>
-    </div>
+      </Router>
+    </ErrorBoundary>
   );
 };
 
@@ -204,22 +64,36 @@ const container = document.getElementById('root');
 
 if (container) {
   try {
-    console.log('Creating React root...');
+    console.log('🔧 Creating React root for full application...');
     const root = ReactDOM.createRoot(container);
-    root.render(<SimpleKrishiApp />);
-    console.log('✅ Simple Krishi App loaded successfully!');
+    root.render(<FullKrishiApp />);
+    console.log('✅ Full Smart Krishi Sahayak loaded successfully!');
+    
+    // Register Service Worker after full app loads
+    setTimeout(() => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/smart-krishi-sahayak/sw.js')
+          .then((registration) => {
+            console.log('✅ Service Worker registered for full app:', registration);
+          })
+          .catch((error) => {
+            console.log('⚠️ Service Worker registration failed:', error);
+          });
+      }
+    }, 2000);
+    
   } catch (error) {
-    console.error('❌ Error rendering app:', error);
+    console.error('❌ Error loading full app:', error);
     container.innerHTML = `
-      <div style="text-align: center; padding: 50px; background: #fee; color: #c00; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
-        <h2>🌾 Smart Krishi Sahayak</h2>
-        <p>Error: ${error instanceof Error ? error.message : 'Unknown error'}</p>
-        <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px;">
-          🔄 Reload App
+      <div style="text-align: center; padding: 50px; background: #f0f8ff; color: #333; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h2 style="color: #16a34a; margin-bottom: 20px;">🌾 Smart Krishi Sahayak</h2>
+        <p style="color: red; margin: 20px 0;">Full App Error: ${error instanceof Error ? error.message : 'Unknown error'}</p>
+        <button onclick="location.reload()" style="background: #16a34a; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px;">
+          🔄 Reload Full App
         </button>
       </div>
     `;
   }
 } else {
-  console.error('❌ No root container found');
+  console.error('❌ No root container found for full app');
 }
