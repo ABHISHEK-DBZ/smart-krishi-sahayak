@@ -88,6 +88,16 @@
     "stopListening": "వినడం ఆపండి",
     "speak": "మాట్లాడు",
     "speaking": "మాట్లాడుతోంది...",
-    "voiceNotSupported": "మీ బ్రౌజర్ వాయిస్ మద్దతు లేదు"
+    "voiceNotSupported": "మీ బ్రౌజర్ వాయిస్ మద్దతు లేదు",
+    "categories": {
+      "cropManagement": "పంట నిర్వహణ",
+      "pestControl": "పురుగు మరియు వ్యాధి నియంత్రణ",
+      "soilHealth": "నేల ఆరోగ్యం",
+      "irrigation": "నీటిపారుదల మరియు నీటి నిర్వహణ",
+      "weatherImpact": "వాతావరణ ప్రభావం",
+      "marketPrices": "మార్కెట్ మరియు ధరలు",
+      "governmentSchemes": "ప్రభుత్వ పథకాలు",
+      "organicFarming": "సేంద్రీయ వ్యవసాయం"
+    }
   }
 }

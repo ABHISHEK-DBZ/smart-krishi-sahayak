@@ -88,6 +88,16 @@
     "stopListening": "સાંભળવાનું બંધ કરો",
     "speak": "બોલો",
     "speaking": "બોલી રહ્યા છીએ...",
-    "voiceNotSupported": "તમારો બ્રાઉઝર વૉઇસ સપોર્ટ કરતો નથી"
+    "voiceNotSupported": "તમારો બ્રાઉઝર વૉઇસ સપોર્ટ કરતો નથી",
+    "categories": {
+      "cropManagement": "પાક વ્યવસ્થાપન",
+      "pestControl": "જીવાત અને રોગ નિયંત્રણ",
+      "soilHealth": "જમીનનું સ્વાસ્થ્ય",
+      "irrigation": "સિંચાઈ અને પાણી વ્યવસ્થાપન",
+      "weatherImpact": "હવામાનની અસર",
+      "marketPrices": "બજાર અને ભાવ",
+      "governmentSchemes": "સરકારી યોજનાઓ",
+      "organicFarming": "જૈવિક ખેતી"
+    }
   }
 }

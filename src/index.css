@@ -703,17 +703,155 @@ html {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #064e3b 100%);
+  color: #f8fafc;
+  line-height: 1.6;
+  position: relative;
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* AI Agent Styles */
+.ai-chat-container {
+  height: calc(100vh - 160px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-chat-header {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.ai-message {
+  max-width: 80%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.ai-message.user {
+  background: rgba(34, 197, 94, 0.2);
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+.ai-message.bot {
+  background: rgba(255, 255, 255, 0.1);
+  margin-right: auto;
+  border-bottom-left-radius: 5px;
+}
+
+.ai-chat-input {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ai-input-container {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.ai-input-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+}
+
+.ai-input-field:focus {
+  outline: none;
+}
+
+.ai-send-button {
+  background: var(--gradient-primary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-send-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.ai-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.ai-typing-indicator {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.ai-typing-dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: typingAnimation 1.4s infinite ease-in-out;
+}
+
+.ai-typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ai-typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typingAnimation {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
 }
 
 /* Custom styles for agriculture theme */

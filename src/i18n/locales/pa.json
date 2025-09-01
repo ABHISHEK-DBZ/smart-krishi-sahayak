@@ -88,6 +88,16 @@
     "stopListening": "ਸੁਣਨਾ ਬੰਦ ਕਰੋ",
     "speak": "ਬੋਲੋ",
     "speaking": "ਬੋਲ ਰਿਹਾ ਹੈ...",
-    "voiceNotSupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਆਵਾਜ਼ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ"
+    "voiceNotSupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਆਵਾਜ਼ ਸਪੋਰਟ ਨਹੀਂ ਕਰਦਾ",
+    "categories": {
+      "cropManagement": "ਫਸਲ ਪ੍ਰਬੰਧਨ",
+      "pestControl": "ਕੀੜੇ ਅਤੇ ਬਿਮਾਰੀ ਨਿਯੰਤਰਣ",
+      "soilHealth": "ਮਿੱਟੀ ਦੀ ਸਿਹਤ",
+      "irrigation": "ਸਿੰਜਾਈ ਅਤੇ ਪਾਣੀ ਪ੍ਰਬੰਧਨ",
+      "weatherImpact": "ਮੌਸਮ ਦਾ ਪ੍ਰਭਾਵ",
+      "marketPrices": "ਮੰਡੀ ਅਤੇ ਕੀਮਤਾਂ",
+      "governmentSchemes": "ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ",
+      "organicFarming": "ਜੈਵਿਕ ਖੇਤੀ"
+    }
   }
 }

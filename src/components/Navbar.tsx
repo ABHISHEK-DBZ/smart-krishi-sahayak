@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
-  Home, 
-  Cloud, 
-  Sprout, 
-  Bug, 
-  TrendingUp, 
-  FileText, 
-  User,
+  Sprout,
   Languages,
+  ChevronDown,
+  Home,
+  Cloud,
+  Bug,
+  TrendingUp,
+  FileText,
   Bot,
-  ChevronDown
+  User,
+  Activity,
+  Zap,
+  BarChart3,
+  Wifi
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -52,14 +56,17 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { path: '/dashboard', icon: Home, label: t('navigation.dashboard') },
-    { path: '/weather', icon: Cloud, label: t('navigation.weather') },
-    { path: '/crop-info', icon: Sprout, label: t('navigation.crops') },
-    { path: '/disease-detection', icon: Bug, label: t('navigation.diseases') },
-    { path: '/mandi-prices', icon: TrendingUp, label: t('navigation.prices') },
-    { path: '/schemes', icon: FileText, label: t('navigation.schemes') },
-    { path: '/agent', icon: Bot, label: t('navigation.agent') },
-    { path: '/profile', icon: User, label: t('navigation.profile') },
+    { path: '/dashboard', icon: Home, label: t('navigation.dashboard') || 'Dashboard' },
+    { path: '/live-dashboard', icon: Activity, label: 'Live Dashboard', isNew: true },
+    { path: '/weather', icon: Cloud, label: t('navigation.weather') || 'Weather' },
+    { path: '/live-weather', icon: Wifi, label: 'Live Weather', isNew: true },
+    { path: '/crop-info', icon: Sprout, label: t('navigation.crops') || 'Crops' },
+    { path: '/disease-detection', icon: Bug, label: t('navigation.diseases') || 'Diseases' },
+    { path: '/mandi-prices', icon: TrendingUp, label: t('navigation.prices') || 'Prices' },
+    { path: '/live-market', icon: BarChart3, label: 'Live Market', isNew: true },
+    { path: '/government-schemes', icon: FileText, label: t('navigation.schemes') || 'Schemes' },
+    { path: '/agent', icon: Bot, label: t('navigation.agent') || 'AI Agent' },
+    { path: '/profile', icon: User, label: t('navigation.profile') || 'Profile' },
   ];
 
   return (

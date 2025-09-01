@@ -88,6 +88,16 @@
     "stopListening": "ऐकणे थांबवा",
     "speak": "बोला",
     "speaking": "बोलत आहे...",
-    "voiceNotSupported": "तुमचा ब्राउझर व्हॉइस सपोर्ट करत नाही"
+    "voiceNotSupported": "तुमचा ब्राउझर व्हॉइस सपोर्ट करत नाही",
+    "categories": {
+      "cropManagement": "पीक व्यवस्थापन",
+      "pestControl": "कीड आणि रोग नियंत्रण",
+      "soilHealth": "मातीचे आरोग्य",
+      "irrigation": "सिंचन आणि पाणी व्यवस्थापन",
+      "weatherImpact": "हवामानाचा प्रभाव",
+      "marketPrices": "बाजार आणि किंमती",
+      "governmentSchemes": "सरकारी योजना",
+      "organicFarming": "सेंद्रिय शेती"
+    }
   }
 }

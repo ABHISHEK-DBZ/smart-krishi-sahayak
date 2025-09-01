@@ -88,6 +88,16 @@
     "stopListening": "கேட்பதை நிறுத்துங்கள்",
     "speak": "பேசு",
     "speaking": "பேசுகிறது...",
-    "voiceNotSupported": "உங்கள் உலாவி குரல் ஆதரவை வழங்காது"
+    "voiceNotSupported": "உங்கள் உலாவி குரல் ஆதரவை வழங்காது",
+    "categories": {
+      "cropManagement": "பயிர் மேலாண்மை",
+      "pestControl": "பூச்சி மற்றும் நோய் கட்டுப்பாடு",
+      "soilHealth": "மண் ஆரோக்கியம்",
+      "irrigation": "நீர்ப்பாசனம் மற்றும் நீர் மேலாண்மை",
+      "weatherImpact": "வானிலை தாக்கம்",
+      "marketPrices": "சந்தை மற்றும் விலைகள்",
+      "governmentSchemes": "அரசு திட்டங்கள்",
+      "organicFarming": "இயற்கை விவசாயம்"
+    }
   }
 }

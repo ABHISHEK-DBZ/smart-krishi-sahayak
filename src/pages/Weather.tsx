@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
+import weatherService from '../services/weatherService';
+import { WeatherData } from '../services/weatherService';
 import { 
   Cloud, 
   Sun, 
@@ -15,7 +16,11 @@ import {
   Search,
   Navigation,
   Star,
-  CheckCircle
+  CheckCircle,
+  CloudDrizzle,
+  CloudLightning,
+  CloudSnow,
+  Cloudy
 } from 'lucide-react';
 
 // Enhanced weather interfaces
@@ -194,7 +199,7 @@ const Weather: React.FC = () => {
     );
   };
 
-  // Search for cities using OpenWeatherMap Geocoding API
+  // Search for cities using Weather Service
   const searchCities = async (query: string) => {
     if (!query.trim()) {
       setSearchResults([]);
@@ -204,21 +209,26 @@ const Weather: React.FC = () => {
 
     setSearchLoading(true);
     try {
-      const API_KEY = 'YOUR_API_KEY'; // Replace with actual API key
-      const response = await axios.get(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(query)}&limit=5&appid=${API_KEY}`
-      );
-      
-      const cities: CityData[] = response.data.map((item: any) => ({
-        name: item.name,
-        state: item.state,
-        country: item.country,
-        lat: item.lat,
-        lon: item.lon
-      }));
-      
-      setSearchResults(cities);
-      setShowSearchResults(true);
+      const location = await weatherService.getLocationByName(query);
+      if (location) {
+        const cities = [{
+          name: location.name,
+          state: location.state,
+          country: location.country,
+          lat: location.lat,
+          lon: location.lon
+        }];
+        
+        setSearchResults(cities);
+        setShowSearchResults(true);
+      } else {
+        // Fallback: filter popular cities if API fails
+        const filteredCities = popularCities.filter(city =>
+          city.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setSearchResults(filteredCities);
+        setShowSearchResults(true);
+      }
     } catch (error) {
       console.error('Error searching cities:', error);
       // Fallback: filter popular cities if API fails
@@ -254,26 +264,25 @@ const Weather: React.FC = () => {
   };
 
   // Get current user location
-  const getCurrentLocation = () => {
+  const getCurrentLocation = async () => {
     setLoading(true);
     setError(null);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setCoords({ lat: latitude, lon: longitude });
-        },
-        (err) => {
-          console.warn("Location error:", err.message);
-          // Use Mumbai coordinates as fallback
-          const fallbackCoords = { lat: 19.4127, lon: 72.8111 };
-          setCoords(fallbackCoords);
-        }
-      );
-    } else {
-      // Use Mumbai coordinates as fallback for browsers without geolocation
+    try {
+      const location = await weatherService.getCurrentLocation();
+      if (location) {
+        setCoords({ lat: location.lat, lon: location.lon });
+      } else {
+        // Use Mumbai coordinates as fallback
+        const fallbackCoords = { lat: 19.4127, lon: 72.8111 };
+        setCoords(fallbackCoords);
+        setError('Could not get your current location. Showing default location.');
+      }
+    } catch (err) {
+      console.warn("Location error:", err);
+      // Use Mumbai coordinates as fallback
       const fallbackCoords = { lat: 19.4127, lon: 72.8111 };
       setCoords(fallbackCoords);
+      setError('Could not get your current location. Showing default location.');
     }
   };
 
@@ -281,60 +290,134 @@ const Weather: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      // Use the backend proxy
-      const response = await axios.get('http://localhost:5000/api/weather', {
-        params: { lat, lon }
-      });
-      setWeatherData(response.data);
+      const location = { lat, lon, name: '', state: '', country: 'IN' };
+      const weatherData = await weatherService.getWeatherData(location);
+      
+      if (weatherData) {
+        setWeatherData({
+          name: location.name || 'Your Location',
+          main: {
+            temp: weatherData.current.temp,
+            humidity: weatherData.current.humidity,
+            feels_like: weatherData.current.feelsLike,
+            pressure: weatherData.current.pressure,
+            temp_min: weatherData.daily[0]?.tempMin || weatherData.current.temp,
+            temp_max: weatherData.daily[0]?.tempMax || weatherData.current.temp
+          },
+          weather: [{
+            description: weatherData.current.description,
+            icon: getWeatherIconCode(weatherData.current.description),
+            main: getWeatherMainType(weatherData.current.description)
+          }],
+          wind: {
+            speed: weatherData.current.windSpeed,
+            deg: 0 // API doesn't provide wind direction
+          },
+          visibility: weatherData.current.visibility,
+          clouds: { all: 0 }, // API doesn't provide cloud coverage
+          sys: {
+            sunrise: 0, // API doesn't provide sunrise/sunset times
+            sunset: 0
+          },
+          uv_index: weatherData.current.uv,
+          air_quality: {
+            aqi: 0, // API doesn't provide AQI
+            components: {
+              co: 0,
+              no2: 0,
+              o3: 0,
+              pm2_5: 0,
+              pm10: 0
+            }
+          }
+        });
+
+        // Set hourly and daily forecast data
+        setHourlyWeather(weatherData.hourly.map(hour => ({
+          dt: new Date(hour.time).getTime() / 1000,
+          temp: hour.temp,
+          humidity: hour.humidity,
+          weather: [{
+            description: hour.description,
+            icon: getWeatherIconCode(hour.description)
+          }],
+          rain: hour.rainfall ? { '1h': hour.rainfall } : undefined
+        })));
+
+        setDailyWeather(weatherData.daily.map(day => ({
+          dt: new Date(day.date).getTime() / 1000,
+          temp: {
+            day: (day.tempMax + day.tempMin) / 2,
+            min: day.tempMin,
+            max: day.tempMax
+          },
+          humidity: day.humidity,
+          weather: [{
+            description: day.description,
+            icon: getWeatherIconCode(day.description)
+          }],
+          rain: day.rainfall,
+          wind_speed: day.windSpeed
+        })));
+
+        // Set soil conditions
+        setSoilConditions({
+          moisture: weatherData.agricultural.soilMoisture * 100, // Convert to percentage
+          temperature: weatherData.agricultural.soilTemperature,
+          ph: 6.5 + Math.random() * 1, // Mock pH value
+          nitrogen: 20 + Math.random() * 60,
+          phosphorus: 15 + Math.random() * 35,
+          potassium: 25 + Math.random() * 50
+        });
+
+        // Get weather alerts and farming recommendations
+        const alerts = weatherService.getWeatherAlerts(weatherData);
+        const recommendations = weatherService.getFarmingRecommendations(weatherData);
+
+        setWeatherAlerts(alerts.map(alert => ({
+          event: alert,
+          description: alert,
+          start: Date.now() / 1000,
+          end: (Date.now() / 1000) + 86400,
+          severity: 'Moderate'
+        })));
+
+      } else {
+        throw new Error('Could not fetch weather data');
+      }
     } catch (err: any) {
       console.error("Error fetching weather:", err);
-      // If API fails, show mock data for Mumbai
-      const mockWeatherData: WeatherData = {
-        name: "Mumbai",
-        main: {
-          temp: 28,
-          humidity: 73,
-          feels_like: 31,
-          pressure: 1013,
-          temp_min: 25,
-          temp_max: 32
-        },
-        weather: [{
-          description: "partly cloudy",
-          icon: "02d",
-          main: "Clouds"
-        }],
-        wind: {
-          speed: 3.5,
-          deg: 180
-        },
-        visibility: 8000,
-        clouds: {
-          all: 40
-        },
-        sys: {
-          sunrise: 1691567400,
-          sunset: 1691611200
-        },
-        uv_index: 7,
-        air_quality: {
-          aqi: 3,
-          components: {
-            co: 200,
-            no2: 20,
-            o3: 60,
-            pm2_5: 15,
-            pm10: 25
-          }
-        }
-      };
-      setWeatherData(mockWeatherData);
-      
-      // Generate mock advanced weather data
-      generateAdvancedWeatherData(lat, lon);
+      setError(err.message || 'Could not fetch weather data');
     } finally {
       setLoading(false);
     }
+  };
+
+  // Helper function to convert weather description to icon code
+  const getWeatherIconCode = (description: string): string => {
+    const desc = description.toLowerCase();
+    if (desc.includes('clear')) return '01d';
+    if (desc.includes('few clouds')) return '02d';
+    if (desc.includes('scattered clouds')) return '03d';
+    if (desc.includes('broken clouds') || desc.includes('overcast')) return '04d';
+    if (desc.includes('shower rain')) return '09d';
+    if (desc.includes('rain')) return '10d';
+    if (desc.includes('thunderstorm')) return '11d';
+    if (desc.includes('snow')) return '13d';
+    if (desc.includes('mist') || desc.includes('fog')) return '50d';
+    return '02d'; // Default to few clouds
+  };
+
+  // Helper function to get main weather type
+  const getWeatherMainType = (description: string): string => {
+    const desc = description.toLowerCase();
+    if (desc.includes('clear')) return 'Clear';
+    if (desc.includes('cloud')) return 'Clouds';
+    if (desc.includes('rain')) return 'Rain';
+    if (desc.includes('thunderstorm')) return 'Thunderstorm';
+    if (desc.includes('snow')) return 'Snow';
+    if (desc.includes('mist') || desc.includes('fog')) return 'Atmosphere';
+    return 'Clouds'; // Default
   };
 
   // Generate mock advanced weather data
@@ -410,6 +493,18 @@ const Weather: React.FC = () => {
     });
   };
 
+  // Auto-refresh weather data every 5 minutes
+  useEffect(() => {
+    const refreshInterval = setInterval(() => {
+      if (coords) {
+        fetchWeatherData(coords.lat, coords.lon);
+      }
+    }, 300000); // 5 minutes
+
+    return () => clearInterval(refreshInterval);
+  }, [coords]);
+
+  // Initial load
   useEffect(() => {
     getCurrentLocation();
     loadFavoriteLocations();
@@ -422,17 +517,101 @@ const Weather: React.FC = () => {
     }
   }, [coords]);
 
+  // Check if conditions are suitable for spraying
+  const getSprayingAdvice = useCallback(() => {
+    if (!weatherData) return null;
+    
+    const isSuitable = weatherService.isSuitableForSpraying({
+      current: {
+        temp: weatherData.main.temp,
+        humidity: weatherData.main.humidity,
+        windSpeed: weatherData.wind.speed,
+        rainfall: 0,
+        description: weatherData.weather[0].description,
+        feelsLike: weatherData.main.feels_like,
+        visibility: weatherData.visibility,
+        uv: weatherData.uv_index || 0,
+        pressure: weatherData.main.pressure
+      },
+      hourly: [],
+      daily: [],
+      agricultural: {
+        soilMoisture: 0,
+        soilTemperature: 0,
+        evapotranspiration: 0,
+        growingDegreeDay: 0
+      }
+    });
+
+    return {
+      suitable: isSuitable,
+      message: isSuitable 
+        ? 'Current conditions are suitable for pesticide/fertilizer spraying'
+        : 'Not recommended to spray pesticides/fertilizers under current conditions'
+    };
+  }, [weatherData]);
+
   const getWeatherIcon = (iconCode: string) => {
     const size = 64;
-    if (iconCode.startsWith('01')) return <Sun className="text-yellow-400" size={size} />; // clear sky
-    if (iconCode.startsWith('02')) return <Cloud className="text-gray-400" size={size} />; // few clouds
-    if (iconCode.startsWith('03')) return <Cloud className="text-gray-500" size={size} />; // scattered clouds
-    if (iconCode.startsWith('04')) return <Cloud className="text-gray-600" size={size} />; // broken clouds
-    if (iconCode.startsWith('09')) return <CloudRain className="text-blue-400" size={size} />; // shower rain
-    if (iconCode.startsWith('10')) return <CloudRain className="text-blue-500" size={size} />; // rain
-    if (iconCode.startsWith('11')) return <CloudRain className="text-indigo-600" size={size} />; // thunderstorm
-    // Add more cases for snow, mist etc. if needed
-    return <Cloud className="text-gray-500" size={size} />;
+    const commonClasses = "transition-all duration-300 ease-in-out hover:scale-110";
+
+    // Clear sky
+    if (iconCode.startsWith('01')) {
+      return <Sun className={`text-yellow-400 ${commonClasses}`} size={size} />;
+    }
+
+    // Few clouds
+    if (iconCode.startsWith('02')) {
+      return <Cloud className={`text-gray-400 ${commonClasses}`} size={size} />;
+    }
+
+    // Scattered clouds
+    if (iconCode.startsWith('03')) {
+      return <Cloudy className={`text-gray-500 ${commonClasses}`} size={size} />;
+    }
+
+    // Broken clouds or overcast
+    if (iconCode.startsWith('04')) {
+      return (
+        <div className="relative">
+          <Cloud className={`text-gray-600 absolute ${commonClasses}`} size={size} />
+          <Cloud className={`text-gray-400 ml-2 mt-2 ${commonClasses}`} size={size} />
+        </div>
+      );
+    }
+
+    // Shower rain
+    if (iconCode.startsWith('09')) {
+      return <CloudDrizzle className={`text-blue-400 ${commonClasses}`} size={size} />;
+    }
+
+    // Rain
+    if (iconCode.startsWith('10')) {
+      return <CloudRain className={`text-blue-500 ${commonClasses}`} size={size} />;
+    }
+
+    // Thunderstorm
+    if (iconCode.startsWith('11')) {
+      return <CloudLightning className={`text-indigo-600 ${commonClasses}`} size={size} />;
+    }
+
+    // Snow
+    if (iconCode.startsWith('13')) {
+      return <CloudSnow className={`text-blue-200 ${commonClasses}`} size={size} />;
+    }
+
+    // Mist, fog, etc.
+    if (iconCode.startsWith('50')) {
+      return (
+        <div className="relative opacity-70">
+          <Cloud className={`text-gray-400 absolute blur-[1px] ${commonClasses}`} size={size} />
+          <Cloud className={`text-gray-300 ml-2 mt-2 blur-[1px] ${commonClasses}`} size={size} />
+        </div>
+      );
+    }
+
+    // Default
+    return <Cloud className={`text-gray-500 ${commonClasses}`} size={size} />;
   };
 
   const handleRefresh = () => {
@@ -917,15 +1096,129 @@ const Weather: React.FC = () => {
       {/* Weather-based Crop Recommendations */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold mb-4">{t('weather.recommendations')}</h2>
+        
+        {/* Spraying Advice Section */}
+        {weatherData && (
+          <div className={`mb-6 p-4 rounded-lg ${
+            getSprayingAdvice()?.suitable 
+              ? 'bg-green-50 border border-green-200'
+              : 'bg-yellow-50 border border-yellow-200'
+          }`}>
+            <h3 className="font-medium text-lg mb-2">
+              {getSprayingAdvice()?.suitable ? '🌿 Spraying Conditions' : '⚠️ Spraying Advisory'}
+            </h3>
+            <p className={`${
+              getSprayingAdvice()?.suitable ? 'text-green-700' : 'text-yellow-700'
+            }`}>
+              {getSprayingAdvice()?.message}
+            </p>
+            <div className="mt-3 grid grid-cols-2 gap-4 text-sm">
+              <div className="flex items-center">
+                <Wind className="mr-2" size={16} />
+                <span>Wind Speed: {(weatherData.wind.speed * 3.6).toFixed(1)} km/h</span>
+              </div>
+              <div className="flex items-center">
+                <Droplets className="mr-2" size={16} />
+                <span>Humidity: {weatherData.main.humidity}%</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Dynamic Recommendations */}
         <div className="bg-green-50 p-4 rounded-lg">
-          <p className="text-green-800">
-            {t('weather.recommendationText')}
-          </p>
-          <ul className="list-disc list-inside mt-2 text-green-700">
-            <li>{t('weather.rec1')}</li>
-            <li>{t('weather.rec2')}</li>
-            <li>{t('weather.rec3')}</li>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-medium text-green-800">Daily Agricultural Recommendations</h3>
+            <button 
+              onClick={handleRefresh}
+              className="p-2 text-green-600 hover:bg-green-100 rounded-full transition-colors"
+            >
+              <RefreshCw size={18} />
+            </button>
+          </div>
+
+          <ul className="space-y-3">
+            {weatherData && (
+              <>
+                {/* Temperature based */}
+                {weatherData.main.temp > 35 && (
+                  <li className="flex items-start text-green-700">
+                    <Thermometer className="mr-2 mt-1 flex-shrink-0" size={16} />
+                    <span>High temperature alert: Increase irrigation frequency and consider providing shade to sensitive crops</span>
+                  </li>
+                )}
+
+                {/* Humidity based */}
+                {weatherData.main.humidity > 80 && (
+                  <li className="flex items-start text-green-700">
+                    <Droplets className="mr-2 mt-1 flex-shrink-0" size={16} />
+                    <span>High humidity alert: Monitor crops for signs of fungal diseases. Ensure proper ventilation.</span>
+                  </li>
+                )}
+
+                {/* Wind based */}
+                {weatherData.wind.speed > 20 && (
+                  <li className="flex items-start text-green-700">
+                    <Wind className="mr-2 mt-1 flex-shrink-0" size={16} />
+                    <span>Strong winds: Consider providing support to tall crops and delay any spraying operations.</span>
+                  </li>
+                )}
+
+                {/* UV Index based */}
+                {(weatherData.uv_index || 0) > 8 && (
+                  <li className="flex items-start text-green-700">
+                    <Sun className="mr-2 mt-1 flex-shrink-0" size={16} />
+                    <span>High UV index: Consider using shade nets for sensitive crops during peak hours.</span>
+                  </li>
+                )}
+
+                {/* Visibility based */}
+                {weatherData.visibility < 5000 && (
+                  <li className="flex items-start text-green-700">
+                    <Eye className="mr-2 mt-1 flex-shrink-0" size={16} />
+                    <span>Low visibility conditions: Delay spraying operations until visibility improves.</span>
+                  </li>
+                )}
+
+                {/* General recommendations */}
+                <li className="flex items-start text-green-700">
+                  <CloudRain className="mr-2 mt-1 flex-shrink-0" size={16} />
+                  <span>Best time for irrigation is early morning or late evening to minimize water loss through evaporation.</span>
+                </li>
+
+                {/* Soil-based recommendations */}
+                {soilConditions && (
+                  <>
+                    {soilConditions.moisture < 30 && (
+                      <li className="flex items-start text-green-700">
+                        <Droplets className="mr-2 mt-1 flex-shrink-0" size={16} />
+                        <span>Low soil moisture detected: Schedule irrigation soon.</span>
+                      </li>
+                    )}
+                    {soilConditions.temperature > 30 && (
+                      <li className="flex items-start text-green-700">
+                        <Thermometer className="mr-2 mt-1 flex-shrink-0" size={16} />
+                        <span>High soil temperature: Consider mulching to regulate soil temperature.</span>
+                      </li>
+                    )}
+                  </>
+                )}
+              </>
+            )}
           </ul>
+        </div>
+
+        {/* Link to Crop Info */}
+        <div className="mt-6 p-4 bg-green-900 text-white rounded-lg">
+          <h3 className="font-medium mb-2">Want crop-specific recommendations?</h3>
+          <p className="text-green-100 mb-4">Check our detailed crop information section for weather-based cultivation guidelines.</p>
+          <button
+            onClick={() => window.location.href = '/crop-info'}
+            className="bg-white text-green-900 px-4 py-2 rounded-lg hover:bg-green-50 transition-colors inline-flex items-center"
+          >
+            View Crop Guidelines
+            <MapPin className="ml-2" size={16} />
+          </button>
         </div>
       </div>
     </div>

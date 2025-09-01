@@ -89,6 +89,16 @@
     "stopListening": "सुनना बंद करें",
     "speak": "बोलें",
     "speaking": "बोल रहे हैं...",
-    "voiceNotSupported": "आपका ब्राउज़र वॉयस को सपोर्ट नहीं करता"
+    "voiceNotSupported": "आपका ब्राउज़र वॉयस को सपोर्ट नहीं करता",
+    "categories": {
+      "cropManagement": "फसल प्रबंधन",
+      "pestControl": "कीट और रोग नियंत्रण",
+      "soilHealth": "मिट्टी की सेहत",
+      "irrigation": "सिंचाई और जल प्रबंधन", 
+      "weatherImpact": "मौसम का प्रभाव",
+      "marketPrices": "बाजार और कीमतें",
+      "governmentSchemes": "सरकारी योजनाएं",
+      "organicFarming": "जैविक खेती"
+    }
   }
 }

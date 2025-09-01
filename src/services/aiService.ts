@@ -11,7 +11,7 @@ class AIService {
     try {
       const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
       
-      if (apiKey && apiKey !== 'your_openai_api_key_here' && apiKey.startsWith('sk-')) {
+      if (apiKey && apiKey !== 'your_openai_api_key_here' && apiKey.length > 10) {
         this.openai = new OpenAI({
           apiKey: apiKey,
           dangerouslyAllowBrowser: true // Note: In production, use a backend proxy
@@ -33,8 +33,62 @@ class AIService {
 
     try {
       const systemPrompt = language === 'hi' 
-        ? `आप एक विशेषज्ञ भारतीय कृषि सलाहकार हैं। आप भारतीय किसानों की फसलों, मौसम, सरकारी योजनाओं, रोग नियंत्रण, और कृषि तकनीकों के बारे में मदद करते हैं। हमेशा व्यावहारिक, सटीक और उपयोगी जानकारी दें। भारतीय खेती के संदर्भ में जवाब दें।`
-        : `You are an expert Indian Agriculture Advisor. You help Indian farmers with crops, weather, government schemes, disease control, and farming techniques. Always provide practical, accurate and useful information. Answer in the context of Indian farming.`;
+        ? `आप एक विशेषज्ञ भारतीय कृषि सलाहकार हैं। निम्नलिखित निर्देशों का पालन करें:
+
+1. सिर्फ कृषि संबंधित प्रश्नों का उत्तर दें
+2. किसी विशेष फसल के बारे में पूछे जाने पर:
+   - उस फसल की बुवाई का सही समय
+   - आवश्यक मिट्टी और जलवायु
+   - बीज की मात्रा और दूरी
+   - सिंचाई की आवश्यकता
+   - उर्वरक की मात्रा और समय
+   - सामान्य कीट और बीमारियां
+   - फसल की कटाई का समय
+3. मौसम संबंधित सलाह:
+   - वर्तमान मौसम के अनुसार फसल सुरक्षा
+   - सिंचाई की योजना
+4. सरकारी योजनाओं के लिए:
+   - योजना का नाम और लाभ
+   - पात्रता मानदंड
+   - आवेदन प्रक्रिया
+5. बीमारी नियंत्रण के लिए:
+   - बीमारी के लक्षण
+   - उपचार के तरीके
+   - रोकथाम के उपाय
+
+केवल प्रासंगिक, व्यावहारिक और प्रमाणित जानकारी दें। अनावश्यक विवरण न दें।`
+        : `You are an expert Indian Agriculture Advisor. Follow these instructions:
+
+1. Answer only agriculture-related questions
+2. When asked about a specific crop:
+   - Proper sowing time
+   - Required soil and climate
+   - Seed rate and spacing
+   - Irrigation requirements
+   - Fertilizer amount and timing
+   - Common pests and diseases
+   - Harvesting time
+3. For weather-related advice:
+   - Crop protection based on current weather
+   - Irrigation planning
+4. For government schemes:
+   - Scheme name and benefits
+   - Eligibility criteria
+   - Application process
+5. For disease control:
+   - Disease symptoms
+   - Treatment methods
+   - Prevention measures
+
+Provide only relevant, practical, and verified information. Avoid unnecessary details.`;
+
+      // Enhance query with agricultural context
+      const enhancedQuery = `कृषि सलाह: ${query}` // Add agriculture context prefix for Hindi
+        
+      // Add example format to help model structure response
+      const formatExample = language === 'hi' 
+        ? "\n\nउत्तर का प्रारूप:\n1. मुख्य जानकारी\n2. व्यावहारिक सुझाव\n3. सावधानियां"
+        : "\n\nResponse format:\n1. Key information\n2. Practical advice\n3. Precautions";
 
       const completion = await this.openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -45,11 +99,13 @@ class AIService {
           },
           {
             role: "user",
-            content: query
+            content: enhancedQuery + formatExample
           }
         ],
-        max_tokens: 500,
-        temperature: 0.7,
+        max_tokens: 400, // Reduced for more concise responses
+        temperature: 0.5, // Lower temperature for more focused responses
+        presence_penalty: -0.1, // Slightly discourage introducing new topics
+        frequency_penalty: 0.3, // Encourage response variety while staying on topic
       });
 
       return completion.choices[0]?.message?.content || this.getFallbackResponse(language);
@@ -62,18 +118,46 @@ class AIService {
   private getFallbackResponse(language: string): string {
     const responses = {
       hi: [
-        "धान की खेती के लिए उचित जल प्रबंधन और समय पर बुवाई जरूरी है।",
-        "गेहूं की अच्छी फसल के लिए अक्टूबर-नवंबर में बुवाई करें।",
-        "कपास की फसल में कीट प्रबंधन के लिए नीम का तेल का प्रयोग करें।",
-        "PM-KISAN योजना के लिए आधार कार्ड और बैंक अकाउंट लिंक करवाएं।",
-        "सूखे से बचाव के लिए ड्रिप इरिगेशन सिस्टम का इस्तेमाल करें।"
+        `कृपया अपना प्रश्न विशिष्ट रूप से पूछें:
+1. किसी विशेष फसल के बारे में
+2. मौसम के अनुसार खेती की जानकारी
+3. सरकारी योजनाओं की जानकारी
+4. कीट या बीमारी नियंत्रण
+5. खेती की नई तकनीकें`,
+        
+        `में आपकी सहायता कर सकता हूं:
+1. फसल चक्र की योजना
+2. उन्नत बीज चयन
+3. उर्वरक प्रबंधन
+4. सिंचाई की विधियां
+5. फसल सुरक्षा`,
+        
+        `कृपया बताएं:
+1. आपकी फसल कौन सी है?
+2. वर्तमान समस्या क्या है?
+3. आपके क्षेत्र का मौसम कैसा है?
+4. क्या आप किसी विशेष योजना में रुचि रखते हैं?`
       ],
       en: [
-        "For rice cultivation, proper water management and timely sowing are essential.",
-        "For good wheat crop, sow during October-November period.",
-        "Use neem oil for pest management in cotton crops.",
-        "Link Aadhaar card and bank account for PM-KISAN scheme benefits.",
-        "Use drip irrigation system to prevent drought damage."
+        `Please ask your question specifically about:
+1. A particular crop
+2. Season-specific farming advice
+3. Government scheme information
+4. Pest or disease control
+5. Modern farming techniques`,
+        
+        `I can help you with:
+1. Crop rotation planning
+2. Improved seed selection
+3. Fertilizer management
+4. Irrigation methods
+5. Crop protection`,
+        
+        `Please tell me:
+1. What crop are you growing?
+2. What is your current concern?
+3. How is the weather in your area?
+4. Are you interested in any specific scheme?`
       ]
     };
 

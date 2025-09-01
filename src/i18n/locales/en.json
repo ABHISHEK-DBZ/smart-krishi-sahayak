@@ -13,6 +13,28 @@
     "agent": "AI Agent",
     "profile": "Profile"
   },
+  "locationContext": {
+    "title": "Local Agriculture Context",
+    "locationNotFound": "Location not available",
+    "kharifSeason": "Kharif Season (June-October)",
+    "rabiSeason": "Rabi Season (October-March)",
+    "zaidSeason": "Zaid Season (March-June)",
+    "agroClimaticZone": "Agro-Climatic Zone",
+    "rainfall": "Rainfall",
+    "temperature": "Temperature",
+    "zoneNotFound": "Zone information not available",
+    "seasonalCrops": "Seasonal Crops",
+    "actions": {
+      "checkWeather": "Check Weather",
+      "checkSoil": "Check Soil Health",
+      "viewCropCalendar": "View Crop Calendar"
+    },
+    "queries": {
+      "weather": "What's today's weather and precautions to take?",
+      "soilHealth": "Which fertilizers are suitable for my soil?",
+      "cropCalendar": "Which crops should I plant this season?"
+    }
+  },
   "dashboard": {
     "welcome": "Welcome to Smart Krishi Sahayak",
     "todayWeather": "Today's Weather",
@@ -330,6 +352,16 @@
     "stopListening": "Stop Listening",
     "speak": "Speak",
     "speaking": "Speaking...",
-    "voiceNotSupported": "Your browser doesn't support voice"
+    "voiceNotSupported": "Your browser doesn't support voice",
+    "categories": {
+      "cropManagement": "Crop Management",
+      "pestControl": "Pest & Disease Control",
+      "soilHealth": "Soil Health",
+      "irrigation": "Irrigation & Water Management",
+      "weatherImpact": "Weather Impact",
+      "marketPrices": "Market & Prices",
+      "governmentSchemes": "Government Schemes",
+      "organicFarming": "Organic Farming"
+    }
   }
 }

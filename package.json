@@ -14,9 +14,12 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+    "axios": "^1.11.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "i18next": "^23.12.2",
     "i18next-browser-languagedetector": "^8.0.0",

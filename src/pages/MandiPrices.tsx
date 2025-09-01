@@ -184,7 +184,7 @@ const MandiPrices: React.FC = () => {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 >
                     {crops.map(crop => (
-                    <option key={crop} value={crop}>{crop === 'All' ? t('prices.allCrops') : t(`prices.crops.${crop.toLowerCase()}`)}</option>
+                    <option key={crop} value={crop} className="text-gray-800">{crop === 'All' ? t('prices.allCrops') : t(`prices.crops.${crop.toLowerCase()}`)}</option>
                     ))}
                 </select>
                 <select
@@ -193,7 +193,7 @@ const MandiPrices: React.FC = () => {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                 >
                     {states.map(state => (
-                    <option key={state} value={state}>{state === 'All' ? t('prices.allStates') : t(`prices.states.${state.toLowerCase().replace(' ', '')}`)}</option>
+                    <option key={state} value={state} className="text-gray-800">{state === 'All' ? t('prices.allStates') : t(`prices.states.${state.toLowerCase().replace(' ', '')}`)}</option>
                     ))}
                 </select>
                 <div className="flex items-center bg-white border border-gray-300 rounded-lg px-4 py-2">
