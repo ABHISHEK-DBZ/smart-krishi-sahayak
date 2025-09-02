@@ -178,24 +178,24 @@ const MandiPrices: React.FC = () => {
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-                <select
-                    value={selectedCrop}
-                    onChange={(e) => setSelectedCrop(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                >
-                    {crops.map(crop => (
-                    <option key={crop} value={crop} className="text-gray-800">{crop === 'All' ? t('prices.allCrops') : t(`prices.crops.${crop.toLowerCase()}`)}</option>
-                    ))}
-                </select>
-                <select
-                    value={selectedState}
-                    onChange={(e) => setSelectedState(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                >
-                    {states.map(state => (
-                    <option key={state} value={state} className="text-gray-800">{state === 'All' ? t('prices.allStates') : t(`prices.states.${state.toLowerCase().replace(' ', '')}`)}</option>
-                    ))}
-                </select>
+        <select
+          value={selectedCrop}
+          onChange={(e) => setSelectedCrop(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-800"
+        >
+          {crops.map(crop => (
+          <option key={crop} value={crop} style={{ color: '#1f2937', backgroundColor: '#fff' }}>{crop === 'All' ? t('prices.allCrops') : t(`prices.crops.${crop.toLowerCase()}`)}</option>
+          ))}
+        </select>
+        <select
+          value={selectedState}
+          onChange={(e) => setSelectedState(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-800"
+        >
+          {states.map(state => (
+          <option key={state} value={state} style={{ color: '#1f2937', backgroundColor: '#fff' }}>{state === 'All' ? t('prices.allStates') : t(`prices.states.${state.toLowerCase().replace(' ', '')}`)}</option>
+          ))}
+        </select>
                 <div className="flex items-center bg-white border border-gray-300 rounded-lg px-4 py-2">
                     <Calendar className="mr-2 text-gray-500" size={16} />
                     <span className="text-sm text-gray-700">{t('prices.lastUpdated')}: {new Date().toLocaleDateString()}</span>

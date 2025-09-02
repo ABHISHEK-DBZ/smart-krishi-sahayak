@@ -109,7 +109,9 @@ app.post('/api/auth/register', async (req, res) => {
     });
     await newProfile.save();
 
-   
+    // Send success response
+    res.status(201).json({ message: 'Registration successful' });
+
   } catch (err) {
     res.status(500).json({ message: 'Server error during registration', error: err });
   }

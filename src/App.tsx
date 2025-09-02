@@ -16,8 +16,9 @@ import LiveDashboard from './components/LiveDashboard';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const isAuthenticated = () => {
-  // Check if user is logged in (you can implement proper authentication logic)
-  return localStorage.getItem('isAuthenticated') === 'true' || true; // Default to true for demo
+  // Check for a valid JWT token in localStorage
+  const token = localStorage.getItem('token');
+  return !!token;
 };
 
 const PrivateRoute = ({ children }: { children: React.ReactElement }) => {

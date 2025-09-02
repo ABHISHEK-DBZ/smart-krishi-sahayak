@@ -811,7 +811,7 @@ const AiAgent: React.FC = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder={t('aiagent.placeholder') + ' (Advanced AI)'}
-            className="ai-input-field"
+              className="ai-input-field bg-white text-gray-800 placeholder-gray-400"
             disabled={chatState.isLoading}
           />
           

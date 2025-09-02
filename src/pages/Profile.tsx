@@ -47,7 +47,12 @@ const Profile: React.FC = () => {
     const fetchProfile = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${API_URL}/profile`);
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${API_URL}/profile`, {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : ''
+          }
+        });
         setProfile(response.data);
         setEditedProfile(response.data);
         if (response.data.language) {
